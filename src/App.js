@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useForm } from 'react-hook-form';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const {register, handleSubmit, errors, watch} = useForm();
+    const onSubmit = data => {
+        console.log(data)
+    };
+
+    console.log(watch('example'));
+
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input name='example' defaultValue='test' ref={register} />
+            <input name='exampleRequired' ref={register({required: true})} />
+            {errors.exampleRequired && <span>This field is required</span>}
+
+            <input type='submit'/>
+        </form>
+    );
 }
 
 export default App;
