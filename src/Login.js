@@ -20,11 +20,7 @@ function Login(props) {
         //     .post(
         //         "http://localhost:3001/registrations",
         //         {
-        //             user: {
-        //                 email: email,
-        //                 password: password,
-        //                 password_confirmation: passwordConfirmation
-        //             }
+        //             user: data
         //         },
         //         {withCredentials: true}
         //     )
