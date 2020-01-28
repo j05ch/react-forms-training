@@ -5,12 +5,12 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import axios from "axios";
 
-function Registration(props) {
+function Login(props) {
     const {register, handleSubmit, errors, watch} = useForm();
     const [formNames, setFormNames] = useState({});
 
     useEffect(() => {
-        setFormNames(formDe);
+        setFormNames(formEn);
     }, []);
 
 
@@ -40,22 +40,14 @@ function Registration(props) {
 
     const formDe = {
         email: 'E-Mail',
-        type: 'Rolle',
-        craftsman: 'Handwerker',
-        project: 'EZ-Projekt',
         password: 'Passwort',
-        passwordConfirmation: 'Passwort wiederholen',
-        submit: 'Registrieren'
+        submit: 'Anmelden'
     };
 
     const formEn = {
         email: 'E-Mail',
-        type: 'Role',
-        craftsman: 'Craftsman',
-        project: 'EZ-project',
         password: 'Password',
-        passwordConfirmation: 'Comfirm password',
-        submit: 'Sign up'
+        submit: 'Log in'
     };
 
     return (
@@ -67,25 +59,9 @@ function Registration(props) {
                                   ref={register({required: true, maxLength: 100})} />
                 </Form.Group>
 
-                <Form.Group controlId="type">
-                    <Form.Label>{formNames.type}</Form.Label>
-                    <Form.Control as="select" name="type"
-                                  ref={register({required: true})}>
-                        <option name={formNames.craftsman}>{formNames.craftsman}</option>
-                        <option name={formNames.project}>{formNames.project}</option>
-                    </Form.Control>
-                </Form.Group>
-
                 <Form.Group controlId="password">
                     <Form.Label>{formNames.password}</Form.Label>
                     <Form.Control as="input" type="password" placeholder={formNames.password} name="password"
-                                  ref={register({required: true, maxLength: 100})} />
-                </Form.Group>
-
-                <Form.Group controlId="passwordConfirmation">
-                    <Form.Label>{formNames.passwordConfirmation}</Form.Label>
-                    <Form.Control as="input" type="password" placeholder={formNames.passwordConfirmation}
-                                  name="passwordConfirmation"
                                   ref={register({required: true, maxLength: 100})} />
                 </Form.Group>
 
@@ -97,4 +73,4 @@ function Registration(props) {
     );
 }
 
-export default Registration;
+export default Login;

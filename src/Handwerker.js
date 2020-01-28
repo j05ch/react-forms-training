@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
 
 function Handwerker() {
     const [formNames, setFormNames] = useState({});
@@ -33,7 +34,8 @@ function Handwerker() {
         freeFromTo: 'Verfügbarkeit, mögliche Einsatzdauer',
         status: 'Status',
         ongoing: 'Aktuell',
-        notOngoing: 'Nicht aktuell'
+        notOngoing: 'Nicht aktuell',
+        submit: 'Abschicken'
     };
 
     const formEn = {
@@ -51,7 +53,8 @@ function Handwerker() {
         freeFromTo: 'Free from to',
         status: 'Status',
         ongoing: 'Ongoing',
-        notOngoing: 'Ended'
+        notOngoing: 'Ended',
+        submit: 'Send'
     };
 
 
@@ -123,7 +126,9 @@ function Handwerker() {
                         <option name={formNames.notOngoing}>{formNames.notOngoing}</option>
                     </Form.Control>
                 </Form.Group>
-                <input type="submit" />
+                <Button variant='primary' type="submit">
+                    {formNames.submit}
+                </Button>
             </form>
         </Container>
     );

@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Handwerker from './Handwerker';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Projekt from './Projekt';
-import Registration from './Registration';
+import Main from'./Main';
 
-ReactDOM.render(<Registration />, document.getElementById('root'));
+
+ReactDOM.render(<Main />, document.getElementById('root'));
