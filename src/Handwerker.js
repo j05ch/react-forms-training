@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 
-function App() {
+function Handwerker() {
     const [formNames, setFormNames] = useState({});
     const {register, handleSubmit, errors, watch} = useForm();
 
@@ -129,4 +129,4 @@ function App() {
     );
 }
 
-export default App;
+export default Handwerker;
