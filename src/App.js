@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
 
 function App() {
+    const [formNames, setFormNames] = useState({});
     const {register, handleSubmit, errors, watch} = useForm();
+
+    useEffect(() => {
+        setFormNames(formDe);
+    }, []);
+
     const onSubmit = data => {
         console.log(data)
     };
@@ -11,49 +18,114 @@ function App() {
     console.log(watch('example'));
     console.log(errors);
 
+    const formDe = {
+        firstName: 'Vorname',
+        lastName: 'Nachname',
+        profession: 'Handwerksberuf',
+        qualification: 'Qualifikation/ Berufsabschluss',
+        mainFocus: 'Tätikeitsschwerpunkte',
+        experience: 'Berufserfahrung in Jahren',
+        languages: 'Sprachkenntisse',
+        english: 'Englisch',
+        french: 'Französisch',
+        other: 'Sonstige Sprachen',
+        experienceAbroad: 'Auslandserfahrung',
+        freeFromTo: 'Verfügbarkeit, mögliche Einsatzdauer',
+        status: 'Status',
+        ongoing: 'Aktuell',
+        notOngoing: 'Nicht aktuell'
+    };
+
+    const formEn = {
+        firstName: 'Given name',
+        lastName: 'Name',
+        profession: 'Profession',
+        qualification: 'Qualification',
+        mainFocus: 'Main focus',
+        experience: 'Experience in years',
+        languages: 'Languages',
+        english: 'English',
+        french: 'French',
+        other: 'Other languages',
+        experienceAbroad: 'Experience abroad',
+        freeFromTo: 'Free from to',
+        status: 'Status',
+        ongoing: 'Ongoing',
+        notOngoing: 'Ended'
+    };
+
 
     return (
-        // <form onSubmit={handleSubmit(onSubmit)}>
-        //     <input name='example' defaultValue='test' ref={register} />
-        //     <input name='exampleRequired' ref={register({required: true})} />
-        //     {errors.exampleRequired && <span>This field is required</span>}
-        //
-        //     <input type='submit'/>
-        // </form>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group controlId="firstName">
-                <Form.Label>Vorname</Form.Label>
-                <Form.Control as="input" type="text" placeholder="Vorname" name="first_name" ref={register({required: true, maxLength: 80})} />
-            </Form.Group>
-            <p>Nachname</p>
-            <input type="text" placeholder="last_name" name="last_name" ref={register({required: true, maxLength: 100})} />
-            <p>Handwerksberuf</p>
-            <input type="text" placeholder="profession" name="profession" ref={register({required: true, maxLength: 100})} />
-            <p>Qualifikation/ Berufsabschluss</p>
-            <input type="text" placeholder="qualifiaction" name="qualifiaction" ref={register({required: true, maxLength: 200})} />
-            <p>Tätigkeitsschwerpunkte</p>
-            <input type="text" placeholder="main_focus" name="main_focus" ref={register({required: true, maxLength: 200})} />
-            <p>Berufserfahrung in Jahren</p>
-            <input type="number" placeholder="experience" name="experience" ref={register({required: true, maxLength: 3})} />
-            <p>Sprachkenntnisse</p>
-            <p>Englisch</p>
-            <input type="checkbox" placeholder="english" name="english" ref={register} />
-            <p>Französisch</p>
-            <input type="checkbox" placeholder="french" name="french" ref={register} />
-            <p>Sonstiges</p>
-            <input type="checkbox" placeholder="other_lang" name="other_lang" ref={register} />
-            <p>Auslandserfahrung</p>
-            <input type="text" placeholder="experience_abroad" name="experience_abroad" ref={register({maxLength: 200})} />
-            <p>Verfügbarkeit, mögliche Einsatzdauer</p>
-            <input type="text" placeholder="free_from_to" name="free_from_to" ref={register({required: true, maxLength: 200})} />
-            <p>Status</p>
-            <select name="status" ref={register({ required: true })}>
-                <option value="Aktuell">Aktuell</option>
-                <option value=" Nicht aktuell"> Nicht aktuell</option>
-            </select>
-
-            <input type="submit" />
-        </form>
+        <Container>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <Form.Group controlId="firstName">
+                    <Form.Label>{formNames.firstName}</Form.Label>
+                    <Form.Control as="input" type="text" placeholder={formNames.firstName} name="firstName"
+                                  ref={register({required: true, maxLength: 100})} />
+                </Form.Group>
+                <Form.Group controlId="lastName">
+                    <Form.Label>{formNames.lastName}</Form.Label>
+                    <Form.Control as="input" type="text" placeholder={formNames.lastName} name="lastName"
+                                  ref={register({required: true, maxLength: 100})} />
+                </Form.Group>
+                <Form.Group controlId="profession">
+                    <Form.Label>{formNames.profession}</Form.Label>
+                    <Form.Control as="input" type="text" placeholder={formNames.profession} name="profession"
+                                  ref={register({required: true, maxLength: 100})} />
+                </Form.Group>
+                <Form.Group controlId="qualification">
+                    <Form.Label>{formNames.qualification}</Form.Label>
+                    <Form.Control as="input" type="text" placeholder={formNames.qualification} name="qualification"
+                                  ref={register({required: true, maxLength: 100})} />
+                </Form.Group>
+                <Form.Group controlId="mainFocus">
+                    <Form.Label>{formNames.mainFocus}</Form.Label>
+                    <Form.Control as="input" type="text" placeholder={formNames.mainFocus} name="mainFocus"
+                                  ref={register({required: true, maxLength: 100})} />
+                </Form.Group>
+                <Form.Group controlId="experience">
+                    <Form.Label>{formNames.experience}</Form.Label>
+                    <Form.Control as="input" type="number" placeholder={formNames.experience} name="experience"
+                                  ref={register({required: true, maxLength: 100})} />
+                </Form.Group>
+                <p>{formNames.languages}</p>
+                <Form.Group controlId="english">
+                    <Form.Label>{formNames.english}</Form.Label>
+                    <Form.Control as="input" type="checkbox" placeholder={formNames.english} name="english"
+                                  ref={register} />
+                </Form.Group>
+                <Form.Group controlId="french">
+                    <Form.Label>{formNames.french}</Form.Label>
+                    <Form.Control as="input" type="checkbox" placeholder={formNames.french} name="french"
+                                  ref={register} />
+                </Form.Group>
+                <Form.Group controlId="other">
+                    <Form.Label>{formNames.other}</Form.Label>
+                    <Form.Control as="input" type="checkbox" placeholder={formNames.other} name="other"
+                                  ref={register} />
+                </Form.Group>
+                <Form.Group controlId="experienceAbroad">
+                    <Form.Label>{formNames.experienceAbroad}</Form.Label>
+                    <Form.Control as="input" type="text" placeholder={formNames.experienceAbroad}
+                                  name="experienceAbroad"
+                                  ref={register({required: true, maxLength: 300})} />
+                </Form.Group>
+                <Form.Group controlId="freeFromTo">
+                    <Form.Label>{formNames.freeFromTo}</Form.Label>
+                    <Form.Control as="input" type="text" placeholder={formNames.freeFromTo} name="freeFromTo"
+                                  ref={register({required: true, maxLength: 100})} />
+                </Form.Group>
+                <Form.Group controlId="status">
+                    <Form.Label>{formNames.status}</Form.Label>
+                    <Form.Control as="select" name="status"
+                                  ref={register({required: true})}>
+                        <option name={formNames.ongoing}>{formNames.ongoing}</option>
+                        <option name={formNames.notOngoing}>{formNames.notOngoing}</option>
+                    </Form.Control>
+                </Form.Group>
+                <input type="submit" />
+            </form>
+        </Container>
     );
 }
 
