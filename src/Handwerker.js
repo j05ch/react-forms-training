@@ -22,11 +22,24 @@ function Handwerker() {
     const formDe = {
         firstName: 'Vorname',
         lastName: 'Nachname',
+        fieldLabel: 'Branche',
+        field: [
+            'Metall', 'Elektro', 'KfZ+Fahrzeuge',
+            'Wasser+Sanitär+Heizung+Klima+Rohr',
+            'Holz', 'Bau+Ausbau', 'Lebensmittel',
+            'Glas+Papier+Keramik', 'Foto+Medien',
+            'Musikinstrumente', 'Bekleidung+Textil+Leder',
+            'Gold+Silber+Uhr', 'Gesundheit+Körperpflege'
+        ],
         profession: 'Handwerksberuf',
         qualification: 'Qualifikation/ Berufsabschluss',
         mainFocus: 'Tätikeitsschwerpunkte',
         experience: 'Berufserfahrung in Jahren',
         languages: 'Sprachkenntisse',
+        skills: 'Niveau',
+        veryGood: 'Sehr gut',
+        good: 'Gut',
+        base: 'Grundkenntnisse',
         english: 'Englisch',
         french: 'Französisch',
         other: 'Sonstige Sprachen',
@@ -41,11 +54,24 @@ function Handwerker() {
     const formEn = {
         firstName: 'Given name',
         lastName: 'Name',
+        fieldLabel: 'Field',
+        field: [
+            'Metall', 'Elektro', 'KfZ+Fahrzeuge',
+            'Wasser+Sanitär+Heizung+Klima+Rohr',
+            'Holz', 'Bau+Ausbau', 'Lebensmittel',
+            'Glas+Papier+Keramik', 'Foto+Medien',
+            'Musikinstrumente', 'Bekleidung+Textil+Leder',
+            'Gold+Silber+Uhr', 'Gesundheit+Körperpflege'
+        ],
         profession: 'Profession',
         qualification: 'Qualification',
         mainFocus: 'Main focus',
         experience: 'Experience in years',
         languages: 'Languages',
+        skills: 'Niveau',
+        veryGood: 'Sehr gut',
+        good: 'Gut',
+        base: 'Grundkenntnisse',
         english: 'English',
         french: 'French',
         other: 'Other languages',
@@ -57,6 +83,19 @@ function Handwerker() {
         submit: 'Send'
     };
 
+    // TODO
+    const fields = formDe.field.map(field =>
+        <Form.Check
+            type='checkbox'
+            name={`field.${field.toLocaleLowerCase()
+                .replace(/\+/g, '_')
+                .replace(/ü/g, 'ue')
+                .replace(/ä/g, 'ae')
+                .replace(/ö/g, 'oe')
+                .replace(/ß/g, 'ss')}`}
+            label={field}
+            ref={register}
+        />);
 
     return (
         <Container>
@@ -71,6 +110,12 @@ function Handwerker() {
                     <Form.Control as="input" type="text" placeholder={formNames.lastName} name="lastName"
                                   ref={register({required: true, maxLength: 100})} />
                 </Form.Group>
+
+                <Form.Group controlId="field">
+                    <Form.Label>{formNames.fieldLabel}</Form.Label>
+                    {fields}
+                </Form.Group>
+
                 <Form.Group controlId="profession">
                     <Form.Label>{formNames.profession}</Form.Label>
                     <Form.Control as="input" type="text" placeholder={formNames.profession} name="profession"
@@ -91,22 +136,44 @@ function Handwerker() {
                     <Form.Control as="input" type="number" placeholder={formNames.experience} name="experience"
                                   ref={register({required: true, maxLength: 100})} />
                 </Form.Group>
+
                 <p>{formNames.languages}</p>
-                <Form.Group controlId="english">
-                    <Form.Label>{formNames.english}</Form.Label>
-                    <Form.Control as="input" type="checkbox" placeholder={formNames.english} name="english"
-                                  ref={register} />
+                <Form.Group controlId="english" inline>
+                    <Form.Check type="checkbox" placeholder={formNames.english} name="languages.english.english"
+                                label={formNames.english}
+                                ref={register} />
+                    <Form.Control as="select" name="languages.english.level"
+                                  ref={register}>
+                        <option name={'languages.english.level.niveau'}>{formNames.skills}</option>
+                        <option name={'languages.english.level.veryGood'}>{formNames.veryGood}</option>
+                        <option name={'languages.english.level.good'}>{formNames.good}</option>
+                        <option name={'languages.english.level.base'}>{formNames.base}</option>
+                    </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="french">
-                    <Form.Label>{formNames.french}</Form.Label>
-                    <Form.Control as="input" type="checkbox" placeholder={formNames.french} name="french"
-                                  ref={register} />
+                    <Form.Check type="checkbox" name="languages.french.french" label={formNames.french}
+                                ref={register} />
+                    <Form.Control as="select" name="languages.french.level"
+                                  ref={register}>
+                        <option name={'languages.french.level.niveau'}>{formNames.skills}</option>
+                        <option name={'languages.french.level.veryGood'}>{formNames.veryGood}</option>
+                        <option name={'languages.french.level.good'}>{formNames.good}</option>
+                        <option name={'languages.french.level.base'}>{formNames.base}</option>
+                    </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="other">
                     <Form.Label>{formNames.other}</Form.Label>
-                    <Form.Control as="input" type="checkbox" placeholder={formNames.other} name="other"
-                                  ref={register} />
+                    <Form.Control as="input" type="text" name="languages.other.other"
+                                  ref={register({maxLength: 100})} />
+                    <Form.Control as="select" name="languages.other.level"
+                                  ref={register}>
+                        <option name={'languages.other.level.niveau'}>{formNames.skills}</option>
+                        <option name={'languages.other.level.veryGood'}>{formNames.veryGood}</option>
+                        <option name={'languages.other.level.good'}>{formNames.good}</option>
+                        <option name={'languages.other.level.base'}>{formNames.base}</option>
+                    </Form.Control>
                 </Form.Group>
+
                 <Form.Group controlId="experienceAbroad">
                     <Form.Label>{formNames.experienceAbroad}</Form.Label>
                     <Form.Control as="input" type="text" placeholder={formNames.experienceAbroad}

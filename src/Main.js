@@ -8,8 +8,8 @@ function Main() {
     return (
         <>
             {/*<Registration />*/}
-            <Login/>
-            {/*<Handwerker />*/}
+            {/*<Login/>*/}
+            <Handwerker />
             {/*<Projekt />*/}
         </>
     )

@@ -21,41 +21,74 @@ function Projekt() {
 
     const formDe = {
         project: 'Projekt',
-        field: 'Nachname',
+        fieldLabel: 'Gesuchte Branche',
+        field: [
+            'Metall', 'Elektro', 'KfZ+Fahrzeuge',
+            'Wasser+Sanitär+Heizung+Klima+Rohr',
+            'Holz', 'Bau+Ausbau', 'Lebensmittel',
+            'Glas+Papier+Keramik', 'Foto+Medien',
+            'Musikinstrumente', 'Bekleidung+Textil+Leder',
+            'Gold+Silber+Uhr', 'Gesundheit+Körperpflege'
+        ],
         profession: 'Gesuchter Handwerksberuf',
         qualification: 'Gesuchte Qualifikation',
         location: 'Einsatzland, -ort',
         partner: 'Partnereinrichtung',
         tasks: 'Aufgabenbeschreibung',
-        languages: 'Sprachkenntisse',
-        english: 'Englisch',
-        french: 'Französisch',
-        other: 'Sonstige Sprachen',
+        languages: 'Languages',
+        skills: 'Niveau',
+        veryGood: 'Sehr gut',
+        good: 'Gut',
+        base: 'Grundkenntnisse',
+        english: 'English',
+        french: 'French',
+        other: 'Other languages',
         period: 'Zeitraum, Dauer',
         status: 'Status',
-        ongoing: 'Aktuell',
-        notOngoing: 'Nicht aktuell',
+        open: 'Offene Nachfrage',
+        ongoing: 'Nachfrage wird gerade bedient',
+        ended: 'Nachfrage ist erledigt',
         submit: 'Abschicken'
     };
 
     const formEn = {
         project: 'Project',
-        field: 'Field',
+        fieldLabel: 'Field',
+        field: [
+            'Metall', 'Elektro', 'KfZ+Fahrzeuge',
+            'Wasser+Sanitär+Heizung+Klima+Rohr',
+            'Holz', 'Bau+Ausbau', 'Lebensmittel',
+            'Glas+Papier+Keramik', 'Foto+Medien',
+            'Musikinstrumente', 'Bekleidung+Textil+Leder',
+            'Gold+Silber+Uhr', 'Gesundheit+Körperpflege'
+        ],
         profession: 'Searched profession',
         qualification: 'Searched qualification',
         location: 'Location',
         partner: 'Partner',
         tasks: 'Tasks',
         languages: 'Languages',
+        skills: 'Niveau',
+        veryGood: 'Sehr gut',
+        good: 'Gut',
+        base: 'Grundkenntnisse',
         english: 'English',
         french: 'French',
-        other: 'Other',
+        other: 'Other languages',
         period: 'From to',
         status: 'Status',
+        open: 'Open',
         ongoing: 'Ongoing',
-        notOngoing: 'Ended',
+        ended: 'Ended',
         submit: 'Send'
     };
+
+    // TODO
+    function fields() {
+        return formDe.field.map(field =>
+            <option name={field}>{field}</option>
+        );
+    }
 
 
     return (
@@ -66,11 +99,15 @@ function Projekt() {
                     <Form.Control as="input" type="text" placeholder={formNames.project} name="project"
                                   ref={register({required: true, maxLength: 100})} />
                 </Form.Group>
+
                 <Form.Group controlId="field">
-                    <Form.Label>{formNames.field}</Form.Label>
-                    <Form.Control as="input" type="text" placeholder={formNames.field} name="field"
-                                  ref={register({required: true, maxLength: 100})} />
+                    <Form.Label>{formNames.fieldLabel}</Form.Label>
+                    <Form.Control as="select" name="field"
+                                  ref={register({required: true})}>
+                        {fields()}
+                    </Form.Control>
                 </Form.Group>
+
                 <Form.Group controlId="profession">
                     <Form.Label>{formNames.profession}</Form.Label>
                     <Form.Control as="input" type="text" placeholder={formNames.profession} name="profession"
@@ -91,22 +128,48 @@ function Projekt() {
                     <Form.Control as="input" type="text" placeholder={formNames.partner} name="partner"
                                   ref={register({required: true, maxLength: 100})} />
                 </Form.Group>
+                <Form.Group controlId="tasks">
+                    <Form.Label>{(formNames.tasks)}</Form.Label>
+                    <Form.Control as="input" type="text" placeholder={formNames.tasks} name="tasks"
+                                  ref={register({required: true, maxLength: 200})} />
+                </Form.Group>
+
                 <p>{formNames.languages}</p>
-                <Form.Group controlId="english">
-                    <Form.Label>{formNames.english}</Form.Label>
-                    <Form.Control as="input" type="checkbox" placeholder={formNames.english} name="english"
-                                  ref={register} />
+                <Form.Group controlId="english" inline>
+                    <Form.Check type="checkbox" placeholder={formNames.english} name="languages.english.english" label={formNames.english}
+                                ref={register} />
+                    <Form.Control as="select" name="languages.english.level"
+                                  ref={register}>
+                        <option name={'languages.english.level.niveau'}>{formNames.skills}</option>
+                        <option name={'languages.english.level.veryGood'}>{formNames.veryGood}</option>
+                        <option name={'languages.english.level.good'}>{formNames.good}</option>
+                        <option name={'languages.english.level.base'}>{formNames.base}</option>
+                    </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="french">
-                    <Form.Label>{formNames.french}</Form.Label>
-                    <Form.Control as="input" type="checkbox" placeholder={formNames.french} name="french"
-                                  ref={register} />
+                    <Form.Check type="checkbox" name="languages.french.french" label={formNames.french}
+                                ref={register} />
+                    <Form.Control as="select" name="languages.french.level"
+                                  ref={register}>
+                        <option name={'languages.french.level.niveau'}>{formNames.skills}</option>
+                        <option name={'languages.french.level.veryGood'}>{formNames.veryGood}</option>
+                        <option name={'languages.french.level.good'}>{formNames.good}</option>
+                        <option name={'languages.french.level.base'}>{formNames.base}</option>
+                    </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="other">
                     <Form.Label>{formNames.other}</Form.Label>
-                    <Form.Control as="input" type="checkbox" placeholder={formNames.other} name="other"
-                                  ref={register} />
+                    <Form.Control as="input" type="text" name="languages.other.other"
+                                  ref={register({maxLength: 100})} />
+                    <Form.Control as="select" name="languages.other.level"
+                                  ref={register}>
+                        <option name={'languages.other.level.niveau'}>{formNames.skills}</option>
+                        <option name={'languages.other.level.veryGood'}>{formNames.veryGood}</option>
+                        <option name={'languages.other.level.good'}>{formNames.good}</option>
+                        <option name={'languages.other.level.base'}>{formNames.base}</option>
+                    </Form.Control>
                 </Form.Group>
+
                 <Form.Group controlId="period">
                     <Form.Label>{formNames.period}</Form.Label>
                     <Form.Control as="input" type="text" placeholder={formNames.period} name="period"
@@ -116,8 +179,9 @@ function Projekt() {
                     <Form.Label>{formNames.status}</Form.Label>
                     <Form.Control as="select" name="status"
                                   ref={register({required: true})}>
+                        <option name={formNames.open}>{formNames.open}</option>
                         <option name={formNames.ongoing}>{formNames.ongoing}</option>
-                        <option name={formNames.notOngoing}>{formNames.notOngoing}</option>
+                        <option name={formNames.ended}>{formNames.ended}</option>
                     </Form.Control>
                 </Form.Group>
                 <Button variant='primary' type="submit">
