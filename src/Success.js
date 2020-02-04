@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Success() {
+function Success(props) {
     return(
-        <div>Erfolgreich eingeloggt</div>
+        <div>{props.user} erfolgreich eingeloggt</div>
     );
 }
 

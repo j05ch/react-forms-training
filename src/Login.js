@@ -4,10 +4,12 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import axios from "axios";
+import { Redirect } from 'react-router-dom';
 
 function Login(props) {
     const {register, handleSubmit, errors, watch} = useForm();
     const [formNames, setFormNames] = useState({});
+    const [loggedIn, setLoggedIn] = useState(false);
 
     useEffect(() => {
         setFormNames(formEn);
@@ -32,6 +34,9 @@ function Login(props) {
         //     .catch(error => {
         //         console.log("registration error", error);
         //     });
+
+        props.handleSuccessfulAuth(data);
+        setLoggedIn(true);
     }
 
     const formDe = {
@@ -46,27 +51,32 @@ function Login(props) {
         submit: 'Log in'
     };
 
-    return (
-        <Container>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Form.Group controlId="email">
-                    <Form.Label>{formNames.email}</Form.Label>
-                    <Form.Control as="input" type="email" placeholder={formNames.email} name="email"
-                                  ref={register({required: true, maxLength: 100})} />
-                </Form.Group>
+    if (loggedIn)
+        return (
+            <Redirect to={'/success'} />
+        );
+    else
+        return (
+            <Container>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <Form.Group controlId="email">
+                        <Form.Label>{formNames.email}</Form.Label>
+                        <Form.Control as="input" type="email" placeholder={formNames.email} name="email"
+                                      ref={register({required: true, maxLength: 100})} />
+                    </Form.Group>
 
-                <Form.Group controlId="password">
-                    <Form.Label>{formNames.password}</Form.Label>
-                    <Form.Control as="input" type="password" placeholder={formNames.password} name="password"
-                                  ref={register({required: true, maxLength: 100})} />
-                </Form.Group>
+                    <Form.Group controlId="password">
+                        <Form.Label>{formNames.password}</Form.Label>
+                        <Form.Control as="input" type="password" placeholder={formNames.password} name="password"
+                                      ref={register({required: true, maxLength: 100})} />
+                    </Form.Group>
 
-                <Button variant='primary' type="submit">
-                    {formNames.submit}
-                </Button>
-            </form>
-        </Container>
-    );
+                    <Button variant='primary' type="submit">
+                        {formNames.submit}
+                    </Button>
+                </form>
+            </Container>
+        );
 }
 
 export default Login
