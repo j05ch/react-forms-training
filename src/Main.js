@@ -21,7 +21,7 @@ function Main() {
     return (
         <Router>
             <Switch>
-                <Route path='/login' key='login' render={props => <Login {...props} handleSuccessfulAuth={handleSuccessfulAuth} />} />
+                <Route exact path='/' key='login' render={props => <Login {...props} handleSuccessfulAuth={handleSuccessfulAuth} />} />
                 <Route path='/success' key='success' render={props => <Success {...props} user={user} />} />
                 {/*<Registration />*/}
                 {/*<Login/>*/}

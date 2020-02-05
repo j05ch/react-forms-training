@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
+import AuthContext from './contexts/AuthContext';
 
 function Login(props) {
     const {register, handleSubmit, errors, watch} = useForm();
     const [formNames, setFormNames] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
+    const {authState, handleUserLogin} = useContext(AuthContext);
 
     useEffect(() => {
         setFormNames(formEn);
@@ -35,6 +37,9 @@ function Login(props) {
         //         console.log("registration error", error);
         //     });
 
+        console.log('Auth-Status: ', authState);
+        handleUserLogin();
+        console.log('Auth-Status: ', authState);
         props.handleSuccessfulAuth(data);
         setLoggedIn(true);
     }
