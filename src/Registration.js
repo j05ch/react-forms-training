@@ -16,26 +16,26 @@ function Registration(props) {
 
     function onSubmit(data) {
         console.log(data);
-        // axios
-        //     .post(
-        //         "http://localhost:3001/registrations",
-        //         {
-        //             user: {
-        //                 email: email,
-        //                 password: password,
-        //                 password_confirmation: passwordConfirmation
-        //             }
-        //         },
-        //         {withCredentials: true}
-        //     )
-        //     .then(response => {
-        //         if (response.data.status === "created") {
-        //             props.handleSuccessfulAuth(response.data);
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.log("registration error", error);
-        //     });
+        axios
+            .post(
+                "http://localhost:3000/registrations",
+                {
+                    user: {
+                        email: data.email,
+                        password: data.password,
+                        password_confirmation: data.passwordConfirmation
+                    }
+                },
+                {withCredentials: true}
+            )
+            .then(response => {
+                if (response.data.status === "created") {
+                    props.handleSuccessfulAuth(response.data);
+                }
+            })
+            .catch(error => {
+                console.log("registration error", error);
+            });
     }
 
     const formDe = {

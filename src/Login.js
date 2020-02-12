@@ -19,7 +19,7 @@ function Login(props) {
 
 
     function onSubmit(data) {
-        console.log(data);
+        // console.log(data);
         // axios
         //     .post(
         //         "http://localhost:3001/registrations",
@@ -85,3 +85,34 @@ function Login(props) {
 }
 
 export default Login
+
+
+// function onSubmit(data) {
+//     console.log(data);
+//     const formData = new FormData();
+//     formData.append('mail', data.email);
+//     formData.append('password', data.password);
+//     axios
+//         .post(
+//             "https://wp.flowdesk.de/wp-json/flowdesk/customer?action=login",
+//             formData,
+//             {withCredentials: true}
+//         )
+//         .then(response => {
+//             console.log(response);
+//             if (response.status == 200) {
+//                 handleUserLogin();
+//                 props.handleSuccessfulAuth(response.data);
+//                 setLoggedIn(true);
+//             }
+//         })
+//         .catch(error => {
+//             console.log("registration error", error);
+//         });
+//
+//     console.log('Auth-Status: ', authState);
+//     // handleUserLogin();
+//     console.log('Auth-Status: ', authState);
+//     // props.handleSuccessfulAuth(data);
+//     // setLoggedIn(true);
+// }
