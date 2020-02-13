@@ -1,0 +1,63 @@
+export const ezpFormGerman = {
+    project: 'Projekt',
+    fieldLabel: 'Gesuchte Branche',
+    field: [
+        'Metall', 'Elektro', 'KfZ+Fahrzeuge',
+        'Wasser+Sanitär+Heizung+Klima+Rohr',
+        'Holz', 'Bau+Ausbau', 'Lebensmittel',
+        'Glas+Papier+Keramik', 'Foto+Medien',
+        'Musikinstrumente', 'Bekleidung+Textil+Leder',
+        'Gold+Silber+Uhr', 'Gesundheit+Körperpflege'
+    ],
+    profession: 'Gesuchter Handwerksberuf',
+    qualification: 'Gesuchte Qualifikation',
+    location: 'Einsatzland, -ort',
+    partner: 'Partnereinrichtung',
+    tasks: 'Aufgabenbeschreibung',
+    languages: 'Sprachen',
+    skills: 'Niveau',
+    veryGood: 'Sehr gut',
+    good: 'Gut',
+    base: 'Grundkenntnisse',
+    english: 'Englisch',
+    french: 'Französisch',
+    other: 'Andere Sprachen',
+    period: 'Zeitraum, Dauer',
+    status: 'Status',
+    open: 'Offene Nachfrage',
+    ongoing: 'Nachfrage wird gerade bedient',
+    ended: 'Nachfrage ist erledigt',
+    submit: 'Abschicken'
+};
+
+export const ezpFormEnglish = {
+    project: 'Project',
+    fieldLabel: 'Field',
+    field: [
+        'Metall', 'Elektro', 'KfZ+Fahrzeuge',
+        'Wasser+Sanitär+Heizung+Klima+Rohr',
+        'Holz', 'Bau+Ausbau', 'Lebensmittel',
+        'Glas+Papier+Keramik', 'Foto+Medien',
+        'Musikinstrumente', 'Bekleidung+Textil+Leder',
+        'Gold+Silber+Uhr', 'Gesundheit+Körperpflege'
+    ],
+    profession: 'Searched profession',
+    qualification: 'Searched qualification',
+    location: 'Location',
+    partner: 'Partner',
+    tasks: 'Tasks',
+    languages: 'Languages',
+    skills: 'Niveau',
+    veryGood: 'Sehr gut',
+    good: 'Gut',
+    base: 'Grundkenntnisse',
+    english: 'English',
+    french: 'French',
+    other: 'Other languages',
+    period: 'From to',
+    status: 'Status',
+    open: 'Open',
+    ongoing: 'Ongoing',
+    ended: 'Ended',
+    submit: 'Send'
+};
