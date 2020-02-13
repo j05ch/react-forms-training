@@ -37,9 +37,7 @@ function Login(props) {
         //         console.log("registration error", error);
         //     });
 
-        console.log('Auth-Status: ', authState);
         handleUserLogin();
-        console.log('Auth-Status: ', authState);
         props.handleSuccessfulAuth(data);
         setLoggedIn(true);
     }
